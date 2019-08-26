@@ -68,10 +68,11 @@ button {
   border: 2px solid rgba(0, 0, 0, 0.1);
 }
 button:hover,
-button:active {
+button:focus {
   background-color: slategray;
   color: white;
 }
+
 .todos-view {
   max-width: 90%;
   margin: auto;

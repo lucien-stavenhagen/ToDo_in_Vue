@@ -36,6 +36,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    mutateMultipleNewToDos(state, newtodos) {
+      state.todos = [...state.todos, ...newtodos];
+    },
     mutateNewToDo(state, newtodo) {
       state.todos = [...state.todos, { ...newtodo, id: uuidv1() }];
     },
@@ -51,6 +54,9 @@ export default new Vuex.Store({
     //
     // destructure addToDo(context)...{context.commit(...)}
     //
+    dispatchMultipleNewToDos({ commit }, newtodos) {
+      commit("mutateMultipleNewToDos", newtodos);
+    },
     dispatchNewToDo({ commit }, newtodo) {
       commit("mutateNewToDo", newtodo);
     },

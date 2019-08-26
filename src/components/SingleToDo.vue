@@ -1,7 +1,13 @@
 <template>
   <div class="todo-view">
     <div class="checkbox-group" v-bind:class="{linethru: todo.completed}">
-      <button v-bind:id="todo.id" class="done-btn" v-on:click="markCompleted">Done</button>
+      <button
+        v-if="todo.completed"
+        v-bind:id="todo.id"
+        class="done-btn"
+        v-on:click="markCompleted"
+      >Revert</button>
+      <button v-else v-bind:id="todo.id" class="done-btn" v-on:click="markCompleted">Done</button>
       {{todo.title}}
     </div>
     <button class="del-btn" v-on:click="deleteTodo">Delete</button>
@@ -17,11 +23,6 @@ export default {
     ...mapActions(["dispatchToggleToDo", "dispatchDeleteToDo"]),
     markCompleted() {
       this.dispatchToggleToDo(this.todo.id);
-      if (this.todo.completed) {
-        document.getElementById(this.todo.id).innerHTML = "Revert";
-      } else {
-        document.getElementById(this.todo.id).innerHTML = "Done";
-      }
     },
     deleteTodo() {
       this.dispatchDeleteToDo(this.todo.id);
@@ -64,7 +65,9 @@ export default {
   border-radius: 4px;
 }
 .del-btn:hover,
-.done-btn:hover {
+.del-btn:focus,
+.done-btn:hover,
+.done-btn:focus {
   cursor: pointer;
   background-color: slategray;
   color: white;
