@@ -8,7 +8,6 @@
 <script>
 import ToDos from "./components/ToDos.vue";
 import Header from "./components/Header";
-import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "app",
