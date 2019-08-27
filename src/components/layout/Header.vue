@@ -1,6 +1,7 @@
 <template>
   <div class="header-container">
     <div class="header">
+      <img src="../../assets/logo.png" />
       <h1>ToDo App</h1>
     </div>
   </div>
@@ -13,6 +14,15 @@ export default {
 <style scoped>
 * {
   box-sizing: border-box;
+}
+h1{
+  margin: 1rem;
+}
+img {
+  max-width: 50px;
+  width: auto;
+  margin: auto;
+  display: block;
 }
 .header-container {
   text-align: center;
