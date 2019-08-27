@@ -6,25 +6,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    todos: [
-      {
-        id: "1",
-        title: "patch holes",
-        completed: false
-      },
-      {
-        id: "2",
-        title: "clean stove",
-        completed: false
-      },
-      {
-        id: "3",
-        title: "pick up meds",
-        completed: false
-      }
-    ]
+    todos: [],
+    todosls: "todosls"
   },
   getters: {
+    getToDoLocalStorageKey(state) {
+      return state.todosls;
+    },
     getAllTodos(state) {
       return state.todos;
     },
@@ -35,7 +23,20 @@ export default new Vuex.Store({
       return state.todos.filter(todo => !todo.completed);
     }
   },
+  //
+  // persisting state in local storage
+  // https://www.mikestreety.co.uk/blog/vue-js-using-localstorage-with-the-vuex-store
+  //
   mutations: {
+    deleteAll(state) {
+      state.todos = [];
+    },
+    initStore(state) {
+      let init = JSON.parse(localStorage.getItem(state.todosls));
+      if (init) {
+        state.todos = [...init];
+      }
+    },
     mutateMultipleNewToDos(state, newtodos) {
       state.todos = [...state.todos, ...newtodos];
     },
@@ -48,12 +49,37 @@ export default new Vuex.Store({
     },
     mutateDeleteToDo(state, id) {
       state.todos = state.todos.filter(todo => todo.id !== id);
+    },
+    mutateMarkAllDone(state) {
+      state.todos = state.todos.map(todo => {
+        return {
+          ...todo,
+          completed: true
+        };
+      });
+    },
+    mutateMarkAllToDo(state) {
+      state.todos = state.todos.map(todo => {
+        return {
+          ...todo,
+          completed: false
+        };
+      });
     }
   },
   actions: {
     //
     // destructure addToDo(context)...{context.commit(...)}
     //
+    dispatchDeleteAll({ commit }) {
+      commit("deleteAll");
+    },
+    dispatchMarkAllToDo({ commit }) {
+      commit("mutateMarkAllToDo");
+    },
+    dispatchMarkAllDone({ commit }) {
+      commit("mutateMarkAllDone");
+    },
     dispatchMultipleNewToDos({ commit }, newtodos) {
       commit("mutateMultipleNewToDos", newtodos);
     },

@@ -9,6 +9,24 @@
       </div>
       <div class="button-group">
         <button type="submit">Submit todo</button>
+        <input
+          class="from-web"
+          type="button"
+          v-on:click="this.dispatchMarkAllDone"
+          value="Mark All Done"
+        />
+        <input
+          class="from-web"
+          type="button"
+          v-on:click="this.dispatchMarkAllToDo"
+          value="Reset All"
+        />
+        <input
+          class="from-web"
+          type="button"
+          v-on:click="this.dispatchDeleteAll"
+          value="Delete All"
+        />
       </div>
     </form>
   </div>
@@ -20,7 +38,13 @@ export default {
   name: "AddTodo",
   computed: {},
   methods: {
-    ...mapActions(["dispatchNewToDo"]),
+    ...mapActions([
+      "dispatchNewToDo",
+      "dispatchMultipleNewToDos",
+      "dispatchMarkAllToDo",
+      "dispatchMarkAllDone",
+      "dispatchDeleteAll"
+    ]),
     checkForm() {
       if (this.todo.title.length > 0) {
         this.formerrors.title = "";
@@ -79,7 +103,8 @@ export default {
   width: 100%;
 }
 
-button {
+button,
+.from-web {
   margin: 2px 0;
   padding: 5px;
   border: 1px solid rgba(0, 0, 0);
@@ -87,6 +112,8 @@ button {
   background-color: rgb(13, 51, 87);
   color: white;
 }
+.from-web:hover,
+.from-web:focus,
 button:hover,
 button:focus {
   background-color: rgb(21, 78, 131);
