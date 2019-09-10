@@ -2,6 +2,9 @@
   "name": "vue-todos",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.16.0"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -14,9 +17,7 @@
     "express": "^4.17.1",
     "uuid": "^3.3.3",
     "vue": "^2.6.10",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
+    "vuex": "^3.0.1",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
@@ -25,6 +26,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.6.10"
   },
+  "devDependencies": {},
   "eslintConfig": {
     "root": true,
     "env": {
