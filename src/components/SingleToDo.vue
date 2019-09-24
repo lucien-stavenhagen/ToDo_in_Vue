@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="border border-dark rounded d-flex flex-row justify-content-between p-2 m-0 alert alert-info" >
+    <div class="border border-dark rounded d-flex flex-row justify-content-between align-items-center p-2 m-0 alert alert-info" >
       <button
         v-if="todo.completed"
         v-bind:id="todo.id"
