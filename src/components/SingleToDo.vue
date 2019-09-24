@@ -1,16 +1,16 @@
 <template>
-  <div class="todo-view">
-    <div class="checkbox-group" v-bind:class="{linethru: todo.completed}">
+  <div>
+    <div class="border border-dark rounded d-flex flex-row justify-content-between p-2 m-0 alert alert-info" >
       <button
         v-if="todo.completed"
         v-bind:id="todo.id"
-        class="done-btn"
-        v-on:click="markCompleted"
+        class="btn btn-primary border border-dark
+"        v-on:click="markCompleted"
       >Revert</button>
-      <button v-else v-bind:id="todo.id" class="done-btn" v-on:click="markCompleted">Done</button>
-      {{todo.title}}
+      <button v-else v-bind:id="todo.id" class="btn btn-primary border border-dark" v-on:click="markCompleted">Done</button>
+      <span v-bind:class="{linethru: todo.completed}">{{todo.title}}</span>
+    <button class="btn btn-danger border border-dark" v-on:click="deleteTodo">Delete</button>
     </div>
-    <button class="del-btn" v-on:click="deleteTodo">Delete</button>
   </div>
 </template>
 <script>
@@ -31,45 +31,7 @@ export default {
 };
 </script>
 <style scoped>
-* {
-  box-sizing: border-box;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.4rem;
-}
-.todo-view {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 97%;
-  margin: auto;
-  padding: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  background-color: rgb(116, 215, 245);
-  border-radius: 4px;
-}
-
 .linethru {
   text-decoration: line-through;
-}
-.del-btn {
-  background-color: red;
-  padding: 5px 9px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
-  color: white;
-}
-.done-btn {
-  padding: 5px 9px;
-  margin-right: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
-}
-.del-btn:hover,
-.del-btn:focus,
-.done-btn:hover,
-.done-btn:focus {
-  cursor: pointer;
-  background-color: slategray;
-  color: white;
 }
 </style>

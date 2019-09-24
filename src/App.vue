@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="container" id="app">
     <Header />
     <ToDos />
   </div>
@@ -19,4 +19,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
